@@ -8,9 +8,6 @@ it's vs code extension "flutter-strings-extract". help you to extract static str
 
 
 ## How its Work
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
 ### Extract Constant String
 
  extract any string  in  widgets flutter  to constant class `Strings` in lib\resource\strings.dart
