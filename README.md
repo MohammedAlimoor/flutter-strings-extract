@@ -1,5 +1,5 @@
 # flutter-strings-extract 
-```This extension is still under development, errors may occur and we welcome your contributions```
+```This extension is still under development, errors may occur and  welcome your contributions```
 
 it's vs code extension "flutter-strings-extract". help you to extract static string  in widget flutter  to  constant string file or  getx localization file 
 
