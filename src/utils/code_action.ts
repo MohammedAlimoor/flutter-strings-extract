@@ -64,7 +64,7 @@ export function insertSnippet(getx = false) {
 	var textReplace = "";//fullText.replace(regex, "Strings." + varTitle);
 
 	if (getx) {
-		textReplace = fullText.replace(regex,  `\"${varTitle}\".tr`);
+		textReplace = fullText.replace(regex, `\"${varTitle}\".tr`);
 
 	} else {
 		textReplace = fullText.replace(regex, "Strings." + varTitle);
@@ -114,8 +114,10 @@ function createStringsFile(varTitle: String, varValue: String) {
 
 			fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
 
-				var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n}" );
-				vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+				if (!data.includes(varTitle)) { // if not exist 
+					var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n }");
+					vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+				}
 
 			});
 		});
@@ -123,8 +125,11 @@ function createStringsFile(varTitle: String, varValue: String) {
 
 
 		fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
-			var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n }" );
-			vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+			if (!data.includes(varTitle)) { // if not exist 
+				var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n }");
+				vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+			}
+			
 
 		});
 	}
@@ -137,23 +142,31 @@ function createStringsFileGetx(varTitle: String, varValue: String) {
 
 	var newPath2 = getMainPath() + "/localization/lang/" + "en_us.dart";
 	if (!fs.existsSync(newPath2)) {
-		vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode("const Map<String, String> enUS = { \n "  +""+ "};")).then((d) => {
+		vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode("const Map<String, String> enUS = { \n " + "" + "};")).then((d) => {
 
 
 
 			fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
 
-				var data2 = data.replace(regexReplace, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n};" );
-				vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+				if (!data.includes(varTitle)) { // if not exist 
+					var data2 = data.replace(regexReplace, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n};");
+					vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+				}
+
 
 			});
 		});
 	} else {
 
 
+		
 		fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
-			var data2 = data.replace(regexReplace, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n};" );
-			vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+
+			if (!data.includes(varTitle)) { // if not exist 
+				var data2 = data.replace(regexReplace, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n};");
+				vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
+			}
+
 
 		});
 	}
