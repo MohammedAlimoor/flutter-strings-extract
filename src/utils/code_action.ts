@@ -101,17 +101,20 @@ export function insertSnippet(getx = false) {
 
 }
 
-function createStringsFile(varTitle: String, varValue: String) {
 
+const regexReplace = /(})[^}]*$/g;// 
+
+function createStringsFile(varTitle: String, varValue: String) {
+	// const regex = /(})[^}]*$/g; // 'g' flag is for global search & 'm' flag is for multiline.
 
 	var newPath2 = getMainPath() + "/resource/" + "strings.dart";
 	if (!fs.existsSync(newPath2)) {
-		vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode("class Strings{ \n " + footerText + "}")).then((d) => {
+		vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode("class Strings{ \n " + "" + "}")).then((d) => {
 
 
 			fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
 
-				var data2 = data.replace(footerText, "\n  static String " + varTitle + "=" + varValue + ";\n" + footerText);
+				var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n}" );
 				vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
 
 			});
@@ -120,7 +123,7 @@ function createStringsFile(varTitle: String, varValue: String) {
 
 
 		fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
-			var data2 = data.replace(footerText, "\n  static String " + varTitle + "=" + varValue + ";\n" + footerText);
+			var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n }" );
 			vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
 
 		});
@@ -134,13 +137,13 @@ function createStringsFileGetx(varTitle: String, varValue: String) {
 
 	var newPath2 = getMainPath() + "/localization/lang/" + "en_us.dart";
 	if (!fs.existsSync(newPath2)) {
-		vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode("const Map<String, String> enUS = { \n " + footerText + "};")).then((d) => {
+		vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode("const Map<String, String> enUS = { \n "  +""+ "};")).then((d) => {
 
 
 
 			fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
 
-				var data2 = data.replace(footerText, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n" + footerText);
+				var data2 = data.replace(regexReplace, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n};" );
 				vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
 
 			});
@@ -149,14 +152,14 @@ function createStringsFileGetx(varTitle: String, varValue: String) {
 
 
 		fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
-			var data2 = data.replace(footerText, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n" + footerText);
+			var data2 = data.replace(regexReplace, "\n   \"" + varTitle + "\": " + varValue.trim() + " \n};" );
 			vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
 
 		});
 	}
 
 }
-const footerText = "\n/*Please do not delete or update this line or the lines below it*/\n";
+// const footerText = "\n/*Please do not delete or update this line or the lines below it*/\n";
 function frendlyText(text: String) {
 	var tiltle = text.replace("\"", ''); // Remove " "
 

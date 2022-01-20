@@ -2,7 +2,7 @@
 	"name": "flutter-strings-extract",
 	"displayName": "flutter-strings-extract",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
@@ -12,7 +12,6 @@
 	"activationEvents": [
 		"onCommand:flutter-strings-extract.constant",
 		"onCommand:flutter-strings-extract.getx"
-
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -25,9 +24,6 @@
 				"command": "flutter-strings-extract.getx",
 				"title": "Extract Getx Localization"
 			}
-
-
-			
 		]
 	},
 	"scripts": {
