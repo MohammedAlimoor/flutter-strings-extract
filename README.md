@@ -3,9 +3,7 @@
 
 it's vs code extension "flutter-strings-extract". help you to extract static string  in widget flutter  to  constant string file or  getx localization file 
 
-![alt text](code_action_menu.png "Title")
-
-
+[![Foo](https://raw.githubusercontent.com/MohammedAlimoor/vs-extension-strings-extract/main/code_action_menu.png)](https://raw.githubusercontent.com/MohammedAlimoor/vs-extension-strings-extract/main/code_action_menu.png)
 
 ## How its Work
 ### Extract Constant String
