@@ -55,7 +55,7 @@ export function insertSnippet(getx = false) {
 	var m;
 	let fullText = selectedText;
 
-	const regex = /"(.*)"/g; // 'g' flag is for global search & 'm' flag is for multiline.
+	const regex =  /(["'])(.*?)\1/g;
 
 	let contant = selectedText.match(regex)![0];
 
@@ -214,7 +214,7 @@ function canShowAction() {
 		firstLine.range.end.character);
 	const selectedText = textEditor.document.getText(textRange);
 
-	const regex = /"(.*)"/g; // 'g' flag is for global search & 'm' flag is for multiline.
+	const regex =  /(["'])(.*?)\1/g;
 
 	if (selectedText.match(regex) !== null && selectedText.match(regex)!.length > 0) {
 		return true;

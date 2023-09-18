@@ -3,14 +3,46 @@
 	"displayName": "flutter-strings-extract",
 	"publisher": "mohammedalimoor",
 	"description": "",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
+
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MohammedAlimoor/flutter-strings-extract.git"
+	},
+	"icon": "images/icon.png",
+	"author": "mohammedalimoor",
+
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/MohammedAlimoor/flutter-strings-extract/issues"
+	},
+
+	"keywords": [
+		"dart",
+		"flutter",
+		"angulardart",
+		"get",
+		"getX",
+		"extract",
+		"constant",
+		"localization",
+		"string"
+	],
 	"categories": [
+		"Snippets",
+		"Programming Languages",
 		"Other"
 	],
 	"activationEvents": [
+		"workspaceContains:pubspec.yaml"
+	],
+
+	"activationEventsOLD": [
+
 		"onCommand:flutter-strings-extract.constant",
 		"onCommand:flutter-strings-extract.getx"
 	],
