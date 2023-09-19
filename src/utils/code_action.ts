@@ -115,7 +115,7 @@ function createStringsFile(varTitle: String, varValue: String) {
 			fs.readFile(newPath2, 'utf8', (err: any, data: any) => {
 
 				if (!data.includes(varTitle)) { // if not exist 
-					var data2 = data.replace(regexReplace, "\n  static String " + varTitle + "=" + varValue + ";\n }");
+					var data2 = data.replace(regexReplace, "\n  static const  String " + varTitle + "=" + varValue + ";\n }");
 					vscode.workspace.fs.writeFile(vscode.Uri.file(newPath2), new TextEncoder().encode(data2));
 				}
 
@@ -180,8 +180,8 @@ function frendlyText(text: String) {
 	tiltle = replaceAll(tiltle, " ", "");// tiltle.replace(" ", ''); // Remove spaces.
 	tiltle = tiltle.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');// Remove special characters.
 
-	if (tiltle.length > 101) {
-		tiltle = tiltle.substr(0, 100); // Remove the first 100 characters.
+	if (tiltle.length > 50) {
+		tiltle = tiltle.substr(0, 50); // Remove the first 100 characters.
 	}
 	return tiltle;
 }
